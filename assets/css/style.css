@@ -69,7 +69,7 @@
     transition-timing-function: linear;
   }
 
-  .questionAnswers button {
+  .question-button, .saveButton {
     margin 5px;
     margin-left: 8px;
     background-color: purple;
@@ -85,6 +85,11 @@
     transition-duration: 0.15s;
     transition-property: background-color;
     transition-timing-function: linear;
+  }
+
+  .start-button:hover, .question-button:hover, .saveButton:hover {
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
   }
 
   .questionAnswers li {

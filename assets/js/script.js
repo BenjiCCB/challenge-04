@@ -26,6 +26,10 @@ var timeEl = document.querySelector(".timerCount");
 var secondsLeft = 60;
 timeEl.textContent = secondsLeft;
 
+// score page info
+var saveButton = document.querySelector(".saveButton");
+
+// -------------------------------------------
 
 // Questions info
 
@@ -62,6 +66,7 @@ questionChoicesArray = [
   ], 
 ]
 
+// -------------------------------------------
 
 // quiz start
 function startQuiz() {
@@ -138,4 +143,10 @@ function setTime() {
   }, 1000);
 }
 
+function storeInfo(event){
+  event.preventDefault();
+  console.log("i'm happening")
+}
+
 startButton.addEventListener("click", startQuiz);
+saveButton.addEventListener("click", storeInfo);
