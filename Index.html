@@ -10,12 +10,28 @@
   
   <body>
     <div class="wrapper">
-      <div id="intro">
-        <h1 id="headerText">Coding Quiz Challenge</h1>
-        <div id="intro-text">Try to answer the following questions within the time limit.  Keep in mind that incorrect answers will penalize your scoretime by ten seconds! </div>
+      
+      <!-- Game info box -->
+      <section id="gameInfo">
+        <div class="gameInfoBox">
+          <div class="counter">
+            <span>Time left: </span> <span class="timerCount"></span>
+          </div>
+          <div class="score">
+            <span>Correct answers: </span><span class="scoreText"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Intro page text -->
+      <section id="intro">
+        <h1 class="headerText">Coding Quiz Challenge</h1>
+        <div class="intro-text">Try to answer the following questions within the time limit.  Keep in mind that incorrect answers will penalize your scoretime by ten seconds! </div>
         <button class="start-button">Start Quiz</button>
-     </div>
-     <div class="questionContent">
+      </section>
+
+      <!-- Question pages-->
+      <section id="questionContent">
         <div class="questionText">
         </div>
         <div class="questionAnswers">
@@ -26,7 +42,12 @@
             <li><button value ="4" class="button-4">Answer 4</button><span class ="button4-span"></span></li>
           </ul>
         </div>
-      </div>
+      </section>
+
+      <!-- Score page-->
+      <section id="scorePage">
+        <p>I'm some paragrph text</p>
+      </section>
 
     </div>
     

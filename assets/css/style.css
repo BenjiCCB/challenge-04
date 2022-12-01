@@ -2,7 +2,25 @@
     font-family: Futura;
 }
 
-.questionContent{
+#scorePage{
+    display: none;
+    margin-left: 200px;
+    margin-top: 100px;
+    margin-right: 200px;
+    font-size: 1.5em;
+}
+
+#gameInfo{
+    display: none;
+}
+
+.gameInfoBox{
+    text-align: right;
+    margin: 20px;
+    line-height: 2em;
+}
+
+#questionContent{
     display: none;
 }
 
@@ -28,7 +46,7 @@
     text-align: center;
 }
 
-#intro-text{
+.intro-text{
     margin: 50px auto 0 auto;
     max-width: 600px;
 }
@@ -53,6 +71,7 @@
 
   .questionAnswers button {
     margin 5px;
+    margin-left: 8px;
     background-color: purple;
     border-radius: 8px;
     color: white;

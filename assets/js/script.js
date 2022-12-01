@@ -1,15 +1,21 @@
 var startButton = document.querySelector(".start-button");
 var introContent = document.querySelector("#intro");
 var questionText = document.querySelector(".questionText");
-var questionContent = document.querySelector(".questionContent");
+var questionContent = document.querySelector("#questionContent");
 var questionAnswers = document.querySelector(".questionAnswers");
+var scorePageContent = document.querySelector("#scorePage");
+var gameInfoBox = document.querySelector("#gameInfo");
+var scoreText = document.querySelector(".scoreText");
+var scoreText = document.querySelector(".timerCount");
+
 
 var button1Span = document.querySelector(".button1-span"); // could do these using parent?
 var button2Span = document.querySelector(".button2-span");
 var button3Span = document.querySelector(".button3-span");
 var button4Span = document.querySelector(".button4-span");
 
-var score;
+var currentQuestionChoices = [];
+var score = 0;
 
 
   // // Question object
@@ -58,21 +64,31 @@ questionChoicesArray = [
 function startQuiz() {
   introContent.remove();
   questionContent.style.display = 'inline';
-  questionId = 2; // need to create a seperate 'render question' function
+  gameInfoBox.style.display = 'inline';
+  questionId = 1;
+  renderQuestion();
+}
 
-  var currentQuestionChoices = [];
+// render question
+function renderQuestion() {
 
-  for (var i = 0; i < 4; i++) { 
-    currentQuestionChoices[i] = questionChoicesArray[questionId-1][i]
-    console.log(currentQuestionChoices[i])
-  }
-
+  scoreText.textContent = score + " of " + (questionId - 1);
   questionText.textContent = questionArray[questionId - 1];
 
-  button1Span.textContent = currentQuestionChoices[0]; // maybe create a storage array of 'current question choices' and load them in somehow
+  for (var i = 0; i < 4; i++) { 
+    currentQuestionChoices[i] = questionChoicesArray[questionId-1][i];
+  }
+
+  button1Span.textContent = currentQuestionChoices[0];
   button2Span.textContent = currentQuestionChoices[1];
   button3Span.textContent = currentQuestionChoices[2];
   button4Span.textContent = currentQuestionChoices[3];
+}
+
+// render score page
+function renderScorePage(){
+  questionContent.style.display = 'none';
+  scorePageContent.style.display = 'block';
 }
 
 // process choice
@@ -84,7 +100,15 @@ questionAnswers.addEventListener("click", function(event){
     } else {
       console.log("you suck")
     }
-    questionId++; // call render question function
+    questionId++;
+    if(questionId <= questionArray.length){
+      renderQuestion();  
+    } else{
+      console.log("all done");
+      scoreText.textContent = score + " of " + (questionId - 1);
+      renderScorePage();
+    }
+    
 });
 
 startButton.addEventListener("click", startQuiz);
