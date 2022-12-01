@@ -1,6 +1,10 @@
+/* gen */
+
 .wrapper{
     font-family: Futura;
 }
+
+/* score page */
 
 #scorePage{
     display: none;
@@ -9,6 +13,12 @@
     margin-right: 200px;
     font-size: 1.5em;
 }
+
+#nameInput{
+    width: 250px;
+}
+
+/* game info box */
 
 #gameInfo{
     display: none;
@@ -19,6 +29,8 @@
     margin: 20px;
     line-height: 2em;
 }
+
+/* question pages */
 
 #questionContent{
     display: none;
@@ -41,6 +53,12 @@
     margin-left: 30px;
 }
 
+.questionAnswers li {
+    margin-top: 10px;
+}
+
+
+/* intro page */
 #intro {
     margin-top: 100px;
     text-align: center;
@@ -51,10 +69,11 @@
     max-width: 600px;
 }
 
+/* buttons */
+
 .start-button {
     margin-top: 50px;
     background-color: purple;
-    /* background: radial-gradient(circle, rgba(240,230,140,1) 0%, rgba(187,96,33,0.9542191876750701) 100%); */
     border-radius: 8px;
     color: white;
     cursor: pointer;
@@ -69,7 +88,7 @@
     transition-timing-function: linear;
   }
 
-  .question-button, .saveButton {
+.question-button, .saveButton {
     margin 5px;
     margin-left: 8px;
     background-color: purple;
@@ -87,11 +106,7 @@
     transition-timing-function: linear;
   }
 
-  .start-button:hover, .question-button:hover, .saveButton:hover {
+ .start-button:hover, .question-button:hover, .saveButton:hover {
     color: rgba(255, 255, 255, 1);
     box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
   }
-
-  .questionAnswers li {
-    margin-top: 10px;
-}

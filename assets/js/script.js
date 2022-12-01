@@ -28,6 +28,10 @@ timeEl.textContent = secondsLeft;
 
 // score page info
 var saveButton = document.querySelector(".saveButton");
+var nameInput = document.querySelector("#nameInput");
+var nameEntryUL = document.querySelector(".nameEntriesUL");
+var scorePageForm = document.querySelector(".scorePageForm");
+var retakeQuizButton = document.querySelector(".retake-quiz-button");
 
 // -------------------------------------------
 
@@ -143,10 +147,60 @@ function setTime() {
   }, 1000);
 }
 
+// process score, sending to/from local storage
 function storeInfo(event){
   event.preventDefault();
-  console.log("i'm happening")
+  scorePageForm.style.display = 'none';
+
+  // render to screen
+  var nameLI = document.createElement("li");
+  nameLI.textContent = nameInput.value;
+  nameEntryUL.appendChild(nameLI);
+
+  var percentageScore = ((score / questionArray.length)).toFixed(2)*100; // need to add this
+
+  // pull from / add to local storage
+  var userScore = {
+    userName: nameInput.value,
+    userScore: percentageScore,
+  };
+
+  var userScores = [];
+  userScores = JSON.parse(localStorage.getItem("userScores"));
+  console.log(userScores)
+  
+
+
+  // *BRING BACK* localStorage.setItem("userScores", JSON.stringify(userScore))
+
+  // userScores = JSON.parse(localStorage.getItem("userScores"));
+  
+  console.log("name: " +nameInput.value);
+  console.log("percentage: " +percentageScore);
+  
+  // console.log(userScores);
+
+  // var userScoreString = JSON.stringify(userScore);
+  // userScores.push(userScoreString);
+  // localStorage.setItem("userScores", userScores);
+
+
+  // var userScores = [];
+  // userScores.push(JSON.stringify(userScore));
+
+  // console.log(userScores);
+  // localStorage.setItem("userscores", JSON.stringify(userScores));
+
+  
+  // localStorage.setItem("name", nameInput.value);
+  // localStorage.setItem("score", percentageScore);
+
 }
+
+// function resetQuiz(event){
+//   questionId
+// }
 
 startButton.addEventListener("click", startQuiz);
 saveButton.addEventListener("click", storeInfo);
+// retakeQuizButton.addEventListener("click", resetQuiz);
