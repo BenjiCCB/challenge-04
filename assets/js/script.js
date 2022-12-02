@@ -12,13 +12,13 @@ var button2Span = document.querySelector(".button2-span");
 var button3Span = document.querySelector(".button3-span");
 var button4Span = document.querySelector(".button4-span");
 
+var indicatorDiv = document.querySelector(".responseIndicator");
+var indicatorText = document.querySelector(".indicatorText");
+
 var currentQuestionChoices = [];
 var score = 0;
 
-// score page content
-var scorePageContent = document.querySelector("#scorePage");
-
-// game info box
+// info box content
 var gameInfoBox = document.querySelector("#gameInfo");
 var scoreText = document.querySelector(".scoreText");
 
@@ -26,14 +26,13 @@ var timeEl = document.querySelector(".timerCount");
 var secondsLeft = 60;
 timeEl.textContent = secondsLeft;
 
-// score page info
+// score page content
+var scorePageContent = document.querySelector("#scorePage");
 var saveButton = document.querySelector(".saveButton");
 var nameInput = document.querySelector("#nameInput");
 var nameEntryUL = document.querySelector(".nameEntriesUL");
 var scorePageText = document.querySelector(".scorePageText");
 var scorePageForm = document.querySelector(".scorePageForm");
-
-// var retakeQuizButton = document.querySelector(".retake-quiz-button");
 
 // -------------------------------------------
 
@@ -100,22 +99,18 @@ function renderQuestion() {
   button4Span.textContent = currentQuestionChoices[3];
 }
 
-// render score page
-function renderScorePage(){
-  questionContent.style.display = 'none';
-  scoreText.textContent = score + " of " + (questionArray.length);
-  timeEl.parentElement.style.display = 'none'; // alt = var timeElDiv = document.querySelector(".counter");
-  scorePageContent.style.display = 'block';
-}
-
 // process choice
 questionAnswers.addEventListener("click", function(event){
     console.log(event.target.value);
+    indicatorDiv.style.display = 'block';
+
     if(event.target.value == questionAnswersArray[questionId-1]){
       console.log("nice job")
+      indicatorText.textContent = "You nailed it"
       score++
     } else {
       console.log("you suck")
+      indicatorText.textContent = "Incorrect answer"
       secondsLeft -= 10;
     // check timer
       if(secondsLeft <= 0){
@@ -149,6 +144,14 @@ function setTime() {
   }, 1000);
 }
 
+// render score page
+function renderScorePage(){
+  questionContent.style.display = 'none';
+  scoreText.textContent = score + " of " + (questionArray.length);
+  timeEl.parentElement.style.display = 'none';
+  scorePageContent.style.display = 'block';
+}
+
 // process score, sending to/from local storage
 function storeInfo(event){
   event.preventDefault();
@@ -180,16 +183,9 @@ function storeInfo(event){
     var userScoreLI = document.createElement("li");
     userScoreLI.textContent = userScoreName + "... " + userScoreScore + "%" ;
     nameEntryUL.appendChild(userScoreLI);
-
-    
   }
 
 }
 
-// function resetQuiz(event){
-//   questionId
-// }
-
 startButton.addEventListener("click", startQuiz);
 saveButton.addEventListener("click", storeInfo);
-// retakeQuizButton.addEventListener("click", resetQuiz);
