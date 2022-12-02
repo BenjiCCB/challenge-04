@@ -170,12 +170,19 @@ function storeInfo(event){
   scorePageText.textContent = "See high scores below";
 
   var scoresArraySorted = userScoresArray;
-  scoresArraySorted.sort(firstItem, secondItem) => firstItem.userScore - secondItem.userScore;
+  scoresArraySorted.sort((firstItem, secondItem) => secondItem.userScore - firstItem.userScore);
   console.log(scoresArraySorted);
 
-  var nameLI = document.createElement("li");
-  nameLI.textContent = nameInput.value;
-  nameEntryUL.appendChild(nameLI);
+  for(var i = 0; i < 10 && i < userScoresArray.length; i++){
+    var userScoreName = scoresArraySorted[i].userName;
+    var userScoreScore = scoresArraySorted[i].userScore;
+    
+    var userScoreLI = document.createElement("li");
+    userScoreLI.textContent = userScoreName + "... " + userScoreScore + "%" ;
+    nameEntryUL.appendChild(userScoreLI);
+
+    
+  }
 
 }
 
