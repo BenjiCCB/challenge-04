@@ -166,10 +166,7 @@ function storeInfo(event){
     userScore: percentageScore,
   };
 
-  var userScores = [];
-  if (JSON.parse(localStorage.getItem("userScores")) != null){
-    userScores.push(JSON.parse(localStorage.getItem("userScores")));
-  }
+  var userScores = JSON.parse(localStorage.getItem("userScores")) || [];
   userScores.push(userScore);
   localStorage.setItem("userScores", JSON.stringify(userScores));
 }
