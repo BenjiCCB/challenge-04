@@ -30,6 +30,7 @@ timeEl.textContent = secondsLeft;
 var saveButton = document.querySelector(".saveButton");
 var nameInput = document.querySelector("#nameInput");
 var nameEntryUL = document.querySelector(".nameEntriesUL");
+var scorePageText = document.querySelector(".scorePageText");
 var scorePageForm = document.querySelector(".scorePageForm");
 
 // var retakeQuizButton = document.querySelector(".retake-quiz-button");
@@ -153,22 +154,29 @@ function storeInfo(event){
   event.preventDefault();
   scorePageForm.style.display = 'none';
 
-  // render to screen
-  var nameLI = document.createElement("li");
-  nameLI.textContent = nameInput.value;
-  nameEntryUL.appendChild(nameLI);
-
+  // pull from / add to local storage
   var percentageScore = ((score / questionArray.length)).toFixed(2)*100; // **ADD TO SCREEN**
 
-  // pull from / add to local storage
-  var userScore = {
+  var currentUserScore = {
     userName: nameInput.value,
     userScore: percentageScore,
   };
 
-  var userScores = JSON.parse(localStorage.getItem("userScores")) || [];
-  userScores.push(userScore);
-  localStorage.setItem("userScores", JSON.stringify(userScores));
+  var userScoresArray = JSON.parse(localStorage.getItem("userScores")) || [];
+  userScoresArray.push(currentUserScore);
+  localStorage.setItem("userScores", JSON.stringify(userScoresArray));
+
+  // render to screen
+  scorePageText.textContent = "See high scores below";
+
+  var scoresArraySorted = userScoresArray;
+  scoresArraySorted.sort(firstItem, secondItem) => firstItem.userScore - secondItem.userScore;
+  console.log(scoresArraySorted);
+
+  var nameLI = document.createElement("li");
+  nameLI.textContent = nameInput.value;
+  nameEntryUL.appendChild(nameLI);
+
 }
 
 // function resetQuiz(event){
