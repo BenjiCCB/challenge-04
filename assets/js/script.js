@@ -31,7 +31,8 @@ var saveButton = document.querySelector(".saveButton");
 var nameInput = document.querySelector("#nameInput");
 var nameEntryUL = document.querySelector(".nameEntriesUL");
 var scorePageForm = document.querySelector(".scorePageForm");
-var retakeQuizButton = document.querySelector(".retake-quiz-button");
+
+// var retakeQuizButton = document.querySelector(".retake-quiz-button");
 
 // -------------------------------------------
 
@@ -157,7 +158,7 @@ function storeInfo(event){
   nameLI.textContent = nameInput.value;
   nameEntryUL.appendChild(nameLI);
 
-  var percentageScore = ((score / questionArray.length)).toFixed(2)*100; // need to add this
+  var percentageScore = ((score / questionArray.length)).toFixed(2)*100; // **ADD TO SCREEN**
 
   // pull from / add to local storage
   var userScore = {
@@ -166,35 +167,11 @@ function storeInfo(event){
   };
 
   var userScores = [];
-  userScores = JSON.parse(localStorage.getItem("userScores"));
-  console.log(userScores)
-  
-
-
-  // *BRING BACK* localStorage.setItem("userScores", JSON.stringify(userScore))
-
-  // userScores = JSON.parse(localStorage.getItem("userScores"));
-  
-  console.log("name: " +nameInput.value);
-  console.log("percentage: " +percentageScore);
-  
-  // console.log(userScores);
-
-  // var userScoreString = JSON.stringify(userScore);
-  // userScores.push(userScoreString);
-  // localStorage.setItem("userScores", userScores);
-
-
-  // var userScores = [];
-  // userScores.push(JSON.stringify(userScore));
-
-  // console.log(userScores);
-  // localStorage.setItem("userscores", JSON.stringify(userScores));
-
-  
-  // localStorage.setItem("name", nameInput.value);
-  // localStorage.setItem("score", percentageScore);
-
+  if (JSON.parse(localStorage.getItem("userScores")) != null){
+    userScores.push(JSON.parse(localStorage.getItem("userScores")));
+  }
+  userScores.push(userScore);
+  localStorage.setItem("userScores", JSON.stringify(userScores));
 }
 
 // function resetQuiz(event){
