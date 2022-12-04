@@ -23,7 +23,7 @@ var gameInfoBox = document.querySelector("#gameInfo");
 var scoreText = document.querySelector(".scoreText");
 
 var timeEl = document.querySelector(".timerCount");
-var quizTime = 10;
+var quizTime = 60;
 var secondsLeft = quizTime;
 timeEl.textContent = secondsLeft;
 
