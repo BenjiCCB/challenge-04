@@ -23,7 +23,8 @@ var gameInfoBox = document.querySelector("#gameInfo");
 var scoreText = document.querySelector(".scoreText");
 
 var timeEl = document.querySelector(".timerCount");
-var secondsLeft = 60;
+var quizTime = 60;
+var secondsLeft = quizTime;
 timeEl.textContent = secondsLeft;
 
 // score page content
@@ -33,6 +34,7 @@ var nameInput = document.querySelector("#nameInput");
 var nameEntryUL = document.querySelector(".nameEntriesUL");
 var scorePageText = document.querySelector(".scorePageText");
 var scorePageForm = document.querySelector(".scorePageForm");
+var retakeQuizButton = document.querySelector(".retake-quiz-button");
 
 // -------------------------------------------
 
@@ -173,15 +175,20 @@ function renderScorePage(){
   scoreText.textContent = score + " of " + (questionArray.length);
   timeEl.parentElement.style.display = 'none';
   scorePageContent.style.display = 'block';
+  scorePageForm.style.display = 'block';
+  nameEntryUL.style.display = 'none';
+  retakeQuizButton.style.display = 'none';
 }
 
 // process score, sending to/from local storage
 function storeInfo(event){
   event.preventDefault();
   scorePageForm.style.display = 'none';
+  nameEntryUL.style.display = 'block';
+  retakeQuizButton.style.display = 'block';
 
   // pull from / add to local storage
-  var percentageScore = ((score / questionArray.length)).toFixed(2)*100; // **ADD TO SCREEN**
+  var percentageScore = ((score / questionArray.length)).toFixed(2)*100;
 
   var currentUserScore = {
     userName: nameInput.value,
@@ -193,6 +200,7 @@ function storeInfo(event){
   localStorage.setItem("userScores", JSON.stringify(userScoresArray));
 
   // render to screen
+  scorePageText.setAttribute("style", "color:purple; font-size: 1.7em; font-weight: bold");
   scorePageText.textContent = "See high scores below:";
 
   var scoresArraySorted = userScoresArray;
@@ -216,8 +224,31 @@ function storeInfo(event){
     scoreSpan.className = "scoreSpan";
     userScoreLI.appendChild(scoreSpan);
   }
-
+  retakeQuizButton.style.display = 'inline';  
 }
+
+function resetQuiz(event){
+  score = 0;
+  secondsLeft = quizTime;
+  questionId = 1;
+  
+  scorePageText.textContent = "Nice job.  You can save your info below..."
+  scorePageText.setAttribute("style", "color:black; font-size: 1em; font-weight: normal");
+  scorePageForm.style.display = "block";
+  scorePageContent.style.display = "none";
+  timeEl.parentElement.style.display = 'inline';
+  questionContent.style.display = 'inline';
+  gameInfoBox.style.display = 'inline';
+
+  while (nameEntryUL.firstChild) {
+    nameEntryUL.removeChild(nameEntryUL.firstChild);
+  }
+
+  renderQuestion();
+  
+}
+
 
 startButton.addEventListener("click", startQuiz);
 saveButton.addEventListener("click", storeInfo);
+retakeQuizButton.addEventListener("click", resetQuiz);
