@@ -204,8 +204,17 @@ function storeInfo(event){
     var userScoreScore = scoresArraySorted[i].userScore;
     
     var userScoreLI = document.createElement("li");
-    userScoreLI.textContent = userScoreName + "... " + userScoreScore + "%" ;
     nameEntryUL.appendChild(userScoreLI);
+
+    var nameSpan = document.createElement("span");
+    nameSpan.textContent = userScoreName + "... ";
+    nameSpan.className = "nameSpan";
+    userScoreLI.appendChild(nameSpan);
+
+    var scoreSpan = document.createElement("span");
+    scoreSpan.textContent = userScoreScore + "%";
+    scoreSpan.className = "scoreSpan";
+    userScoreLI.appendChild(scoreSpan);
   }
 
 }

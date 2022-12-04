@@ -4,18 +4,15 @@
     font-family: Futura;
 }
 
-/* score page */
+/* intro page */
 
-#scorePage{
-    display: none;
-    margin-left: 200px;
+#intro {
     margin-top: 100px;
-    margin-right: 200px;
-    font-size: 1.5em;
+    text-align: center;
 }
 
-#nameInput{
-    width: 250px;
+.intro-text{
+    margin: 50px auto 0 auto;
 }
 
 /* game info box */
@@ -66,15 +63,22 @@
     display: none;
 }
 
-/* intro page */
+/* score page */
 
-#intro {
+#scorePage{
+    display: none;
+    margin-left: 200px;
     margin-top: 100px;
-    text-align: center;
+    margin-right: 200px;
+    font-size: 1.5em;
 }
 
-.intro-text{
-    margin: 50px auto 0 auto;
+#nameInput{
+    width: 250px;
+}
+
+.nameSpan{
+    font-weight: bold;
 }
 
 /* buttons */
@@ -96,12 +100,7 @@
     transition-timing-function: linear;
   }
 
-.retake-quiz-button {
-    display: none;
-    padding: 20px;
-}
-
-.question-button, .saveButton, .retake-quiz-button {
+.question-button, .saveButton {
     margin: 2px;
     margin-left: 8px;
     background-color: purple;
@@ -119,7 +118,7 @@
     transition-timing-function: linear;
   }
 
- .start-button:hover, .question-button:hover, .saveButton:hover, .retake-quiz-button:hover {
+ .start-button:hover, .question-button:hover, .saveButton:hover {
     color: rgba(255, 255, 255, 1);
     box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
   }
