@@ -40,35 +40,52 @@ var scorePageForm = document.querySelector(".scorePageForm");
 
 // questions
 var questionArray = [
-  "justo. Vinyl risus et at congue massa bicycle non nec justo sapien justo food truck quam quisque in. Odio ultricies before they sold out curabitur orci nec at ",
-  "Ipsum sodales PBR nam vitae morbi quam eros VHS vitae non congue commodo odio noise",
-  "commodo. Urna artisan sodales ornare proin leo elementum tofu ipsum eu proin maecenas"
+  "A series of values or objects stored sequentially to facilitate access and processing is known as a(n):",
+  "A type of variable that indicates whether a given value is either true or false is called a(n):",
+  "A block of code that, when called, performs specific actions detailed within it is referred to as a:",
+  "A tool used from the browser window to view, diagnose, and manipulate code within the DOM is called the:",
+  "A markup element used to identify and manipulate multiple HTML elements using a shared identifier is a(n):",
 ]
 // correct answers
-var questionAnswersArray = [2, 1, 3];
+var questionAnswersArray = [2, 1, 3, 2, 4];
 
 // question choices (2d array) 
 questionChoicesArray = [
   // Question 1
-  ["Question 1 choice 1", 
-  "Question 1 choice 2",
-  "Question 1 choice 3",
-  "Question 1 choice 4"
+  ["Elephant", 
+  "Array",
+  "Lion",
+  "Monkey"
   ], 
   
   // Question 2
-  ["Question 2 choice 1", 
-  "Question 2 choice 2",
-  "Question 3 choice 3",
-  "Question 3 choice 4"
+  ["Boolean", 
+  "Apple",
+  "Banana",
+  "Kumquat"
   ], 
 
   // Question 3
-  ["Question 2 choice 1", 
-  "Question 2 choice 2",
-  "Question 3 choice 3",
-  "Question 3 choice 4"
+  ["Car", 
+  "Plane",
+  "Function",
+  "Train"
   ], 
+
+  // Question 4
+  ["Square", 
+  "Console",
+  "Circle",
+  "Triangle"
+  ],
+
+  // Question 5
+  ["London", 
+  "Paris",
+  "Berlin",
+  "Class"
+  ],
+
 ]
 
 // -------------------------------------------
@@ -107,10 +124,12 @@ questionAnswers.addEventListener("click", function(event){
     if(event.target.value == questionAnswersArray[questionId-1]){
       console.log("nice job")
       indicatorText.textContent = "You nailed it"
+      const myTimeout = setTimeout(clearIndicator, 1500);
       score++
     } else {
-      console.log("you suck")
+      console.log("incorrect answer")
       indicatorText.textContent = "Incorrect answer"
+      const myTimeout = setTimeout(clearIndicator, 1500);
       secondsLeft -= 10;
     // check timer
       if(secondsLeft <= 0){
@@ -128,6 +147,10 @@ questionAnswers.addEventListener("click", function(event){
       renderScorePage();
     }  
 });
+
+function clearIndicator() {
+  indicatorDiv.style.display = 'none';
+}
 
 function setTime() {
   // Sets interval in variable
@@ -170,7 +193,7 @@ function storeInfo(event){
   localStorage.setItem("userScores", JSON.stringify(userScoresArray));
 
   // render to screen
-  scorePageText.textContent = "See high scores below";
+  scorePageText.textContent = "See high scores below:";
 
   var scoresArraySorted = userScoresArray;
   scoresArraySorted.sort((firstItem, secondItem) => secondItem.userScore - firstItem.userScore);

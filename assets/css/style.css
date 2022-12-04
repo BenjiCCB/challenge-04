@@ -64,10 +64,10 @@
     font-style: italic;
     font-size: 1.2em;
     display: none;
-    /* display: block; */
 }
 
 /* intro page */
+
 #intro {
     margin-top: 100px;
     text-align: center;
@@ -102,7 +102,7 @@
 }
 
 .question-button, .saveButton, .retake-quiz-button {
-    margin 5px;
+    margin: 2px;
     margin-left: 8px;
     background-color: purple;
     border-radius: 8px;
