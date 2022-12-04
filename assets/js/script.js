@@ -23,7 +23,7 @@ var gameInfoBox = document.querySelector("#gameInfo");
 var scoreText = document.querySelector(".scoreText");
 
 var timeEl = document.querySelector(".timerCount");
-var quizTime = 60;
+var quizTime = 10;
 var secondsLeft = quizTime;
 timeEl.textContent = secondsLeft;
 
@@ -135,6 +135,8 @@ questionAnswers.addEventListener("click", function(event){
       secondsLeft -= 10;
     // check timer
       if(secondsLeft <= 0){
+        window.alert("Your time has expired!");
+        console.log("Timer has expired");
         renderScorePage();
       }
     }
